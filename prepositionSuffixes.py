@@ -1,9 +1,13 @@
-word = input("ቃላትን ያስገቡ፡ ")
-FirstcharOne = word[0]
-# print(FirstcharOne)
-prepositionSuffixes = ["የ", "በ", "ከ", "ለ"]
-if FirstcharOne in prepositionSuffixes:
-    word = word[1:]
-    print(word)
-else:
-    print(word)
+import letterDefinitions
+def PrepositionSuffix(word):
+    FirstcharOne = word[0]
+    firstTwoChar=word[:2]
+    print(firstTwoChar)
+    # print(FirstcharOne)
+    
+    if FirstcharOne in letterDefinitions.prepositionSuffixes:
+        word = word[1:]
+        print(word)
+    else:
+        print(word)
+    return word
