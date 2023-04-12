@@ -36,6 +36,3 @@ while word not in dictionary.stemWord:
 
 
 print(word)
-
-
-print(word)
