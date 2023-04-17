@@ -1,0 +1,1 @@
+if (word not in writersNames.writers[0]):
