@@ -2,7 +2,7 @@ import stemmerMain
 import writersNames
 
 # sentence = input("ቃላትን ያስገቡ፡ ")
-sentence = "የተደረሰ በይስማዕከ ወርቁ መጽሐፎች"
+sentence = "የተደረሰ በይስማዕከ መጽሐፎች"
 words = sentence.split()
 queryList = []
 len = len(words)
