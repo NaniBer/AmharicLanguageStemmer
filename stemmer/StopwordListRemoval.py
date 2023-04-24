@@ -1,54 +1,108 @@
+import glob
 import stemmerMain
 import writersNames
-StopWords = [
-    "ስለሚሆን", "አና", "ስለዚህ", "በመሆኑም", "ሁሉ", "ሆነ", "ሌላ", "ልክ", "ስለ", "በቀር", "ብቻ", "ና", "አንዳች", "አንድ",
-    "እንደ", "እንጂ", "ያህል", "ይልቅ", "ወደ", "እኔ", "የእኔ", "ራሴ", "እኛ",  "የእኛ",  "እራሳችን", "አንቺ",  "የእርስዎ",
-    "ራስህ", "ራሳችሁ", "እሱ", "እሱን", "የእሱ", "ራሱ",  "እርሷ",  "የእሷ",  "ራሷ",  "እነሱ",  "እነሱን",  "የእነሱ",
-    "እራሳቸው", "ምንድን",  "የትኛው", "ማንን", "ይህ",  "እነዚህ",  "እነዚያ",  "ነኝ",  "ነው",  "ናቸው",  "ነበር",
-    "ነበሩ", "ሁን", "ነበር",  "መሆን",  "አለኝ",  "አለው",  "ነበረ",  "መኖር",  "ያደርጋል",  "አደረገው",  "መሥራት",  "እና", "ግን",  "ከሆነ",  "ወይም",
-    "ምክንያቱም", "እንደ", "እስከ", "ቢሆንም", "ጋር", "ላይ", "መካከል", "በኩል", "ወቅት",  "በኋላ",  "ከላይ", "በርቷል", "ጠፍቷል", "በላይ", "ስር", "እንደገና", "ተጨማሪ",
-    "ከዚያ", "አንዴ", "እዚህ", "እዚያ", "መቼ", "የት", "እንዴት", "ሁሉም", "ማናቸውም", "ሁለቱም", "እያንዳንዱ", "ጥቂቶች",
-    "ተጨማሪ", "በጣም", "ሌላ", "አንዳንድ", "አይ", "ወይም", "አይደለም", "ብቻ", "የራስ", "ተመሳሳይ", "ስለዚህ", "እኔም",
-    "በጣም", "ይችላል", "ይሆናል", "በቃ", "አሁን", "በተጨማሪም", "ሆነው", "ሲሆን", "በተለያዩ", "ይታወቃሉ", "ተለያዩ", "ቆይተዋል", "እያገለግሉ"  # check እያገለግሉ
-]
+import os
+import letterDefinitions
+
 # def RemoveStopWord():
 # print("enter a sentence ")
 # text = input()
 # texts = text.split()
 
+
+def addFiles(indexes, file_name):
+    file_path = f"C:/Users/ASUS/Documents/Projects/Stemmer/AmharicLanguageStemmer/Authors/Author 1/{file_name} index.txt"
+    with open(file_path, 'w', encoding="utf-16") as file:
+        file.write(' '.join(finalIndex))
+
+
 index = []
 finalIndex = []
 
-f = open("C:/Users/ASUS/Documents/Projects/Stemmer/AmharicLanguageStemmer/Authors/ኃይሉ ገብረዮሐንስ.txt", "r", encoding="utf8")
-a = f.read()
-f.close
+files = glob.glob(
+    'C:/Users/ASUS/Documents/Projects/Stemmer/AmharicLanguageStemmer/Authors/Author 1/*.txt')
 
-texts = a.split()
-word = texts[0]
-word = word[1:]
-index.append(word)
-print(index)
-len = len(texts)
-i = 1
+file_name = os.path.basename(files[0])
+file_name = file_name[:-4]
+print(file_name)
 
+for file in files:
 
-while (i < len):
-    word = texts[i]
-    if word not in StopWords:
+    file_name = os.path.basename(file)
+    file_name = file_name[:-4]
+
+    with open(file, 'r', encoding="utf-16") as f:
+        finalIndex.clear()
+        index.clear()
+        print(finalIndex)
+        print("new file opened")
+        data = f.read()
+        texts = data.split()
+        word = texts[0]
+        word = word[1:]
         index.append(word)
+        size = len(texts)
+        i = 1
 
-    i = i+1
+        while (i < size):
+            word = texts[i]
+            if word not in letterDefinitions.StopWords:
+                index.append(word)
+            i = i+1
 
-for word in index:
-    if (word[0] == "“"):
-        finalIndex.append(word)
-    elif (word[-1] == "”"):
-        finalIndex.append(word)
-    else:
-        word = stemmerMain.stemmerMain(word)
-        finalIndex.append(word)
+        for word in index:
+            if (len(word) > 1):
+                if (word[-1] == "፣" or word[-1] == "፡"):
+                    if (word[-1] == "፡" and word[-2] == "፡"):
+                        word = word[:-2]
+                    else:
+                        word = word[:-1]
+                if (word[0] == "“"):
+                    finalIndex.append(word)
+                elif (word[-1] == "”"):
+                    finalIndex.append(word)
+                else:
+
+                    word = stemmerMain.stemmerMain(word)
+                    finalIndex.append(word)
+    f.close()
+    addFiles(finalIndex, file_name)
 
 
-file_path = f"C:/Users/ASUS/Documents/Projects/Stemmer/AmharicLanguageStemmer/Authors/ኃይሉ ገብረዮሐንስ index.txt"
-with open(file_path, 'x', encoding="utf-8") as file:
-    file.write(' '.join(finalIndex))
+# f = open("C:/Users/ASUS/Documents/Projects/Stemmer/AmharicLanguageStemmer/Authors/ሀብታሙ አለባቸው.txt", "r", encoding="utf8")
+# a = f.read()
+# f.close
+
+# texts = a.split()
+# word = texts[0]
+# word = word[1:]
+# index.append(word)
+# print(index)
+# len = len(texts)
+# i = 1
+
+
+# while (i < len):
+#     word = texts[i]
+#     if word not in StopWords:
+#         index.append(word)
+
+#     i = i+1
+
+# print(index)
+
+# for word in index:
+#     if (word[0] == "“"):
+#         finalIndex.append(word)
+#     elif (word[-1] == "”"):
+#         finalIndex.append(word)
+#     else:
+#         word = stemmerMain.stemmerMain(word)
+#         finalIndex.append(word)
+
+
+# print(finalIndex)
+
+# file_path = f"C:/Users/ASUS/Documents/Projects/Stemmer/AmharicLanguageStemmer/Authors/ኃይሉ ገብረዮሐንስ index.txt"
+# with open(file_path, 'x', encoding="utf-8") as file:
+#     file.write(' '.join(finalIndex))

@@ -35,3 +35,6 @@ def stemmerMain(word):
         i = i+1
 
     return word
+
+
+print(stemmerMain("በማታገል"))

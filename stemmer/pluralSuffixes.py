@@ -28,6 +28,3 @@ def PluralSuffixes(word):
         word = letterDefinitions.singleWords[index]
 
     return word
-
-
-print(PluralSuffixes("የቤተክርስቲያን"))
