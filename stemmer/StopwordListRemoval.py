@@ -49,4 +49,6 @@ for word in index:
         finalIndex.append(word)
 
 
-print(finalIndex)
+file_path = f"C:/Users/ASUS/Documents/Projects/Stemmer/AmharicLanguageStemmer/Authors/ኃይሉ ገብረዮሐንስ index.txt"
+with open(file_path, 'x', encoding="utf-8") as file:
+    file.write(' '.join(finalIndex))
