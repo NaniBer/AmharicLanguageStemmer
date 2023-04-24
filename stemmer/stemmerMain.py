@@ -6,21 +6,23 @@ import dictionary
 import miscallenous
 import writersNames
 
-# word = input("ቃላትን ያስገቡ፡ ")
-
-# word = "የተደረሰ"
-
 
 def stemmerMain(word):
     # Check if the word is a stem word or author's first name
+    i = 0
 
-    while (word not in dictionary.stemWord and word not in writersNames.writers[0]):
+    while (word not in dictionary.stemWord and word not in writersNames.writers[0] and i < 3):
 
         lastcharOne = word[-1]
         lastcharTwo = word[-2:]
 
         # Steps Preposition -> possesion -> gender -> plural
+        word = prepositionSuffixes.PrepositionSuffix(word)
+        if (word in dictionary.stemWord):
+            break
         word = miscallenous.Mis(word)
+        if (word in dictionary.stemWord):
+            break
         word = possessionSuffixes.PossessionSuffixes(word)
         if (word in dictionary.stemWord):
             break
@@ -30,7 +32,6 @@ def stemmerMain(word):
         word = pluralSuffixes.PluralSuffixes(word)
         if (word in dictionary.stemWord):
             break
-        word = prepositionSuffixes.PrepositionSuffix(word)
+        i = i+1
 
-    print(word)
     return word

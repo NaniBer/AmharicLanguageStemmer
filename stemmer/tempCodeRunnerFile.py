@@ -1,1 +1,2 @@
-if (word not in writersNames.writers[0]):
+for word in index:
+    word = stemmerMain.stemmerMain(word)
