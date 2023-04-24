@@ -13,3 +13,6 @@ def Mis(word):
         word = word[:-2]
 
     return word
+
+
+print(Mis("የቤተክርስቲያን"))

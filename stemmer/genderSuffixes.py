@@ -20,4 +20,4 @@ def GenderSuffixes(word):
     return word
 
 
-print(GenderSuffixes("ከአባቱ "))
+print(GenderSuffixes("የቤተክርስቲያን"))

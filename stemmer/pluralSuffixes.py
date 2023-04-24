@@ -30,4 +30,4 @@ def PluralSuffixes(word):
     return word
 
 
-print(PluralSuffixes("ከአባቱ"))
+print(PluralSuffixes("የቤተክርስቲያን"))
