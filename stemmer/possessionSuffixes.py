@@ -37,8 +37,8 @@ def PossessionSuffixes(word):
             index = letterDefinitions.secondLetter.index(word[-1])
             word = word.replace(word[-1], letterDefinitions.sixthLetter[index])
 
-        elif lastword in letterDefinitions.possessionWords4:
-            index1 = letterDefinitions.possessionWords4.index(word[-1])
+        elif lastword in letterDefinitions.fifthLetter:
+            index1 = letterDefinitions.fifthLetter.index(word[-1])
             word = word.replace(
                 word[-1], letterDefinitions.sixthLetter[index1])
     elif (word in letterDefinitions.pluralWords):

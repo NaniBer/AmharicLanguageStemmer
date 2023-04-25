@@ -11,6 +11,8 @@ def Mis(word):
             word += letterDefinitions.sixthLetter[index]
         elif (lastcharTwo in letterDefinitions.mis):
             word = word[:-2]
+        if (lastcharOne in letterDefinitions.mis):
+            word = word[:-1]
     elif (word in letterDefinitions.pluralWords):
         index = letterDefinitions.pluralWords.index(word)
         word = letterDefinitions.singleWords[index]

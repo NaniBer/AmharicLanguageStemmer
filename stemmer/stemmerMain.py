@@ -39,4 +39,4 @@ def stemmerMain(word):
     return word
 
 
-print(stemmerMain("በታሪክ"))
+print(stemmerMain("ቆሙ"))

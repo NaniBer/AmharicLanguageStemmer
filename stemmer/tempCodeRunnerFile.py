@@ -1,1 +1,1 @@
-addFiles(finalIndex, file_name)
+ፖለቲካዊ
