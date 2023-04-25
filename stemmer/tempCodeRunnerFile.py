@@ -1,2 +1,1 @@
-for word in index:
-    word = stemmerMain.stemmerMain(word)
+addFiles(finalIndex, file_name)

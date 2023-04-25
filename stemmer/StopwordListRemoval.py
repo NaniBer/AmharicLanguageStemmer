@@ -3,6 +3,7 @@ import stemmerMain
 import writersNames
 import os
 import letterDefinitions
+import writersNames
 
 # def RemoveStopWord():
 # print("enter a sentence ")
@@ -11,7 +12,7 @@ import letterDefinitions
 
 
 def addFiles(indexes, file_name):
-    file_path = f"C:/Users/ASUS/Documents/Projects/Stemmer/AmharicLanguageStemmer/Authors/Author 1/{file_name} index.txt"
+    file_path = f"C:/Users/ASUS/Documents/Projects/Stemmer/AmharicLanguageStemmer/Books/Indexes/{file_name} index.txt"
     with open(file_path, 'w', encoding="utf-16") as file:
         file.write(' '.join(finalIndex))
 
@@ -20,51 +21,56 @@ index = []
 finalIndex = []
 
 files = glob.glob(
-    'C:/Users/ASUS/Documents/Projects/Stemmer/AmharicLanguageStemmer/Authors/Author 1/*.txt')
+    'C:/Users/ASUS/Documents/Projects/Stemmer/AmharicLanguageStemmer/Books/utf-8/*.txt')
 
 file_name = os.path.basename(files[0])
 file_name = file_name[:-4]
-print(file_name)
+# print(file_name)
 
 for file in files:
 
     file_name = os.path.basename(file)
     file_name = file_name[:-4]
 
-    with open(file, 'r', encoding="utf-16") as f:
+    with open(file, 'r', encoding="utf-8") as f:
         finalIndex.clear()
         index.clear()
         print(finalIndex)
         print("new file opened")
         data = f.read()
+        print(file_name)
+
         texts = data.split()
         word = texts[0]
-        word = word[1:]
+        # word = word[1:]
         index.append(word)
         size = len(texts)
         i = 1
 
         while (i < size):
             word = texts[i]
+            if (len(word) > 1):
+                if (word[-1] == "።" or word[-1] == ":" or word[-1] == "፣" or word[-1] == "፤"):
+                    word = word[:-1]
+                if (word[0] == "፣"):
+                    continue
+            elif (word == "፣"):
+                i = i+1
+                continue
+            elif (len(word) == 1):
+                i = i+1
+                continue
             if word not in letterDefinitions.StopWords:
                 index.append(word)
             i = i+1
 
         for word in index:
-            if (len(word) > 1):
-                if (word[-1] == "፣" or word[-1] == "፡"):
-                    if (word[-1] == "፡" and word[-2] == "፡"):
-                        word = word[:-2]
-                    else:
-                        word = word[:-1]
-                if (word[0] == "“"):
-                    finalIndex.append(word)
-                elif (word[-1] == "”"):
-                    finalIndex.append(word)
-                else:
+            if (word in writersNames.writers):
+                finalIndex.append(word)
+            else:
+                word = stemmerMain.stemmerMain(word)
+                finalIndex.append(word)
 
-                    word = stemmerMain.stemmerMain(word)
-                    finalIndex.append(word)
     f.close()
     addFiles(finalIndex, file_name)
 

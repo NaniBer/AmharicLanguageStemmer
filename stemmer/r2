@@ -10,15 +10,15 @@ import letterDefinitions
 
 
 def addFiles(indexes, file_name):
-    file_path = f"C:/Users/ASUS/Documents/Projects/Stemmer/AmharicLanguageStemmer/Authors/Author 1/{file_name} index.txt"
+    file_path = f"C:/Users/ASUS/Documents/Projects/Stemmer/AmharicLanguageStemmer/Books/Indexes/{file_name} index.txt"
     with open(file_path, 'w', encoding="utf-8") as file:
         file.write(' '.join(finalIndex))
 
 
 index = []
 finalIndex = []
-f = open("C:/Users/ASUS/Documents/Projects/Stemmer/AmharicLanguageStemmer/Authors/ፕሮፌሰር አድሚያለም ፀጋ.txt",
-         "r", encoding="utf-16")
+f = open("C:/Users/ASUS/Documents/Projects/Stemmer/AmharicLanguageStemmer/Books/መንግሥትና የሕዝብ አስተዳደር by ገብረሕይወት ባይከዳኝ.txt",
+         "r", encoding="utf-8")
 a = f.read()
 f.close
 
@@ -51,9 +51,8 @@ for word in index:
         elif (word[-1] == "”"):
             finalIndex.append(word)
         else:
-            print(word)
             word = stemmerMain.stemmerMain(word)
             finalIndex.append(word)
 f.close()
 
-addFiles(finalIndex, "ፕሮፌሰር አድሚያለም ፀጋ")
+addFiles(finalIndex, "መንግሥትና የሕዝብ አስተዳደር by ገብረሕይወት ባይከዳኝ")
