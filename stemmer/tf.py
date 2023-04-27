@@ -11,4 +11,5 @@ def calculateTf(words):
         total_words = len(words)
         tf = term_count
         index[word] = tf
+
     return index

@@ -1,16 +1,19 @@
 import collections
 import glob
 import os
+import math
 
 
 def calculateIdf():
     files = glob.glob(
         'C:/Users/ASUS/Documents/Projects/Stemmer/AmharicLanguageStemmer/Books/Indexes/*.txt')
     indexList = []
+    total = len(files)
     for file in files:
         with open(file, 'r', encoding="utf-8") as f:
             file_name = os.path.basename(file)
             file_name = file_name[:-10]
+
             try:
                 data = f.read()
             except UnicodeDecodeError:
@@ -29,7 +32,10 @@ def calculateIdf():
                 df[w] = {i}
 
     for i in df:
-        df[i] = len(df[i])
+        count = len(df[i])
+        idf = math.log2(total/count)
+        df[i] = idf
+
     sorted_df = dict(sorted(df.items(), key=lambda x: x[1]))
 
     return sorted_df

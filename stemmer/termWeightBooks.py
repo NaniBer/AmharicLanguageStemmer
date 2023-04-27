@@ -39,18 +39,19 @@ def termWeight():
             authors = author.split()
             for word in authors:
                 words.append(word)
-            # print(file_name)
             tfValues = tf.calculateTf(words)
             for word in words:
-                values[word] = (idfValues[word])*(tfValues[word])
+                if (word in idfValues):
+                    values[word] = (idfValues[word])*(tfValues[word])
+                else:
+                    values[word] = 1
             sorted_dict = {k: v for k, v in sorted(
                 values.items(), key=lambda item: item[1])}
-            # print(sorted_dict)
+
             tfidf = list(sorted_dict.values())
             length = len(tfidf)
             q1 = round(1/4*(length+1))-1
-            q2 = round(3/4 * (length+1))-1
-            # print(q1, q2)
+            q2 = length-1
             indexes = list(sorted_dict)
             indexTerm = []
             while (q2 > q1):
@@ -60,16 +61,22 @@ def termWeight():
                 value = sorted_dict[indexes[q1]]
                 fileTerm[indexes[q1]] = value
             biggestValue = sorted_dict[indexes[q2]]
+
             title = bookTitle.split()
-            for word in title:
-                fileTerm[word] = biggestValue
             authors = author.split()
-            for word in authors:
-                fileTerm[word] = biggestValue
+            if (len(title) > 1 and len(authors) > 1):
+                for word in title:
+                    fileTerm[word] = biggestValue
+                for word in authors:
+                    fileTerm[word] = biggestValue
+            else:
+                if (len(title) == 1):
+                    bookTitle = title[0]
+                    fileTerm[bookTitle] = biggestValue
+                if (len(authors) == 1):
+                    author = authors[0]
+                    fileTerm[author] = biggestValue
 
-            # file_path = f"C:/Users/ASUS/Documents/Projects/Stemmer/AmharicLanguageStemmer/Books/Indexes/Final Index/{file_name}.txt"
-            # with open(file_path, 'w', encoding="utf-16") as file:
-            #     file.write(str(fileTerm))
-
-
-termWeight()
+            file_path = f"C:/Users/ASUS/Documents/Projects/Stemmer/AmharicLanguageStemmer/Books/Indexes/Final Index/{file_name}.txt"
+            with open(file_path, 'w', encoding="utf-16") as file:
+                file.write(str(fileTerm))
