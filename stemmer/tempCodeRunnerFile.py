@@ -1,1 +1,1 @@
-ፖለቲካዊ
+queryList

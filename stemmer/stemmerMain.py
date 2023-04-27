@@ -39,4 +39,3 @@ def stemmerMain(word):
     return word
 
 
-print(stemmerMain("ቆሙ"))

@@ -12,16 +12,17 @@ import writersNames
 
 
 def addFiles(indexes, file_name):
-    file_path = f"C:/Users/ASUS/Documents/Projects/Stemmer/AmharicLanguageStemmer/Books/Indexes/{file_name} index.txt"
-    with open(file_path, 'w', encoding="utf-16") as file:
-        file.write(' '.join(finalIndex))
+    print(indexes)
+    # file_path = f"C:/Users/ASUS/Documents/Projects/Stemmer/AmharicLanguageStemmer/Books/Indexes/{file_name} index.txt"
+    # with open(file_path, 'w', encoding="utf-16") as file:
+    #     file.write(' '.join(indexes))
 
 
 index = []
 finalIndex = []
 
 files = glob.glob(
-    'C:/Users/ASUS/Documents/Projects/Stemmer/AmharicLanguageStemmer/Books/utf-8/*.txt')
+    'C:/Users/ASUS/Documents/Projects/Stemmer/AmharicLanguageStemmer/Books/*.txt')
 
 file_name = os.path.basename(files[0])
 file_name = file_name[:-4]
@@ -33,6 +34,11 @@ for file in files:
     file_name = file_name[:-4]
 
     with open(file, 'r', encoding="utf-8") as f:
+        try:
+            data = f.read
+        except UnicodeEncodeError:
+            f = open(file, 'r', encoding="utf-16")
+            data = f.read()
         finalIndex.clear()
         index.clear()
         print(finalIndex)
