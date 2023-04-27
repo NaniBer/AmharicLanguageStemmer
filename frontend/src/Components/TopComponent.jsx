@@ -1,14 +1,11 @@
 
 const TopComponent=()=>{
     return(
-        <div className="flex place-content-between m-7">
-           <div className="flex">
-             <p className="flex">home</p>
-             <p className="flex">home</p>
-
-           </div>
-
-
+       <div className="flex">
+  <p className="text-xl mt-5 ml-10">
+        <span className="font-light">Book </span>
+        <span className="text-yellow-400">Review</span>
+      </p>
         </div>
     )
 

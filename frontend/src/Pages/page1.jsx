@@ -1,21 +1,27 @@
 import Component1 from "../Components/componen1";
-import TopComponent from "../Components/TopComponent";
-
 
 const page1=()=>{
     return(
         <div>
-                        <TopComponent/>
-
-             <p>This is Home</p>
+             <p></p>
 <div>
     <div>
-    <div className="inline-flex items-center justify-center">
+<div>
+</div>
+
+    </div>
+<section class="bg-white pb-20 dark:bg-[#021931]">
+    <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+        <div class="mr-auto place-self-center lg:col-span-7">
+            <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">የምትወዱትን መጹሀፍት ግምገማ ያግኘኡ</h1>
+            <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">የፀሀፊዎች እና የተለያዩ መፀሀፍት ጥሩ ግመገማ</p>
+       
+            <div className="inline-flex items-center justify-center">
             <div className="flex space-x-1">
                 
                 <input
                     type="text"
-                    className="block ml-10 w-200 px-10 py-2 text-yellow-700 bg-white border rounded-full focus:
+                    className="block ml-10 w-100 px-10 py-2 text-yellow-700 bg-white border rounded-full focus:
                     border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     placeholder="Search..."
                 />
@@ -38,17 +44,14 @@ const page1=()=>{
                 </button>
             </div>
         </div>
-
-        <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"/>
-        
-        <div ></div>
-
-        
-<div>
-</div>
-
+        </div>
+        <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
+             {/* <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png" alt="mockup"/> */}
+            {/* <img src={ require('./images/bookkk.jpg')} alt=""></img> */}
+            <img src="/images/girl3.jpg" alt="nop it not working"></img>
+        </div>                
     </div>
-
+</section>
 
 
 </div>
@@ -59,4 +62,3 @@ const page1=()=>{
     )
 }
 export default page1
-

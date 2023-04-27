@@ -1,6 +1,6 @@
 const Component1=()=>{
     return(
-        <div>This is component 1</div>
+        <div></div>
     )
 }
 
