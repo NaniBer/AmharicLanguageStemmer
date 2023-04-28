@@ -7,10 +7,9 @@ import idf
 
 
 def ranking(queryList, documents):
-
     values = {}
     cosineValue = {}
-
+    sorted_cosine = {}
     sorted_dict = {}
     relationshipWithTheQuery = {}
     tfValues = tf.calculateTf(queryList)
@@ -42,4 +41,6 @@ def ranking(queryList, documents):
                     docArr.append(0)
             dot = np.dot(queryTfIDF, docArr)
             cosineValue[file_name] = dot
-    return cosineValue
+            sorted_cosine = dict(
+                sorted(cosineValue.items(), key=lambda item: item[1], reverse=True))
+    return sorted_cosine

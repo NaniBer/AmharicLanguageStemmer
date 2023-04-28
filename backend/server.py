@@ -15,8 +15,6 @@ def members():
 @app.route('/search', methods=['POST'])
 def query():
     query = {'query': request.json['query']}
-    # data = request.args.get['name']
-    # files = main.main(data)
     print(query['query'])
     toJSON = json.dumps(list(query.values()))
     data = json.loads(toJSON)

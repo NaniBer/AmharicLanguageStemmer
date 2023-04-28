@@ -79,4 +79,8 @@ def termWeight():
 
             file_path = f"C:/Users/ASUS/Documents/Projects/Stemmer/AmharicLanguageStemmer/Books/Indexes/Final Index/{file_name}.txt"
             with open(file_path, 'w', encoding="utf-16") as file:
+                print(file_name)
                 file.write(str(fileTerm))
+
+
+termWeight()

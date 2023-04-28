@@ -1,6 +1,13 @@
 import Component1 from "../Components/componen1";
 
 const page1=()=>{
+    const [query,setQuery]= useState('')
+    const handleClick=(e)=>{
+        
+        e.preventDefault()
+        const formData= new FormData(e.target)
+        const data= Object.fromEntries(formData)
+        setQuery(data)
     return(
         <div>
              <p>This is Home</p>
@@ -18,9 +25,10 @@ const page1=()=>{
        
             <div className="inline-flex items-center justify-center">
             <div className="flex space-x-1">
-                
+                <form onSubmit={handleClick}>
                 <input
                     type="text"
+                    name="query"
                     className="block ml-10 w-100 px-10 py-2 text-yellow-700 bg-white border rounded-full focus:
                     border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     placeholder="Search..."
@@ -42,6 +50,7 @@ const page1=()=>{
                         />
                     </svg>
                 </button>
+                </form>
             </div>
         </div>
         </div>
@@ -60,6 +69,7 @@ const page1=()=>{
         
         
     )
+}
 }
 export default page1
 

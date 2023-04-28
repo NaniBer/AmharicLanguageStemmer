@@ -32,11 +32,15 @@ def searchQuery(query):
             amount = {}
 
             length = len(query)
+
             threshold = length/4
             for word in query:
                 if word in words:
+
                     term_count = (words == word).sum()
                     amount[word] = term_count
+            # if (len(amount) == 0):
+            #     continue
             if len(amount) >= threshold:
                 foundDocuments.append(file_name)
             else:
