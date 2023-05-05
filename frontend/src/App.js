@@ -1,21 +1,16 @@
 import "./App.css";
-import React from "react";
-// import Page1 from "./Pages/Page1";
-import FirstPage from "./Pages/FirstPage";
-import ResultViewer from "./Pages/ResultViewer";
-import search from "./Pages/search";
-import searchdetail from "./Pages/searchdetail";
+import LandingPage from "./Pages/LandingPage";
+import Search from "./Pages/Search";
+import SearchDetail from "./Pages/SearchDetail";
+import { Route, Routes } from "react-router";
 
 function App() {
   return (
-    <div className="App">
-      <p className="font-bold">Hello</p>
-      <FirstPage />
-      <ResultViewer />
-
-      {/* <search />
-      <searchdetail /> */}
-    </div>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/search" element={<Search />} />
+      <Route path="/details" element={<SearchDetail />} />
+    </Routes>
   );
 }
 
